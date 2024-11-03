@@ -346,6 +346,7 @@ Minitel.Emulator = class {
         switch(keyword.toUpperCase()) {
             case 'SOMMAIRE':
             case 'SOMM':
+            case 'SOMM.':
                 message = Minitel.keys.Videotex.Sommaire
                 break
             case 'ANNULATION':
@@ -374,6 +375,12 @@ Minitel.Emulator = class {
                 break
 
             default:
+                // Check if the word is a URL
+                if (keyword.match(/^http/)) {
+                    window.open(keyword, '_blank')
+                    return false
+                }
+
                 // Convert the string to a code sequence
                 range(keyword.length).forEach(offset => {
                     message.push(keyword.charCodeAt(offset))

@@ -133,6 +133,22 @@ Minitel.CharCell = class extends Minitel.Cell {
     }
 
     /**
+     * Tests if the character in the cell is alphanumeric (true) or not (false).
+     * @return {boolean}
+     */
+    isUrlCharacter() {
+        return this.value >= 0x41 && this.value <= 0x5A // A-Z
+            || this.value >= 0x61 && this.value <= 0x7A // a-z
+            || this.value >= 0x30 && this.value <= 0x39 // 0-9
+            || this.value === '.'.charCodeAt(0)
+            || this.value === '-'.charCodeAt(0)
+            || this.value === '_'.charCodeAt(0)
+            || this.value === '~'.charCodeAt(0)
+            || this.value === ':'.charCodeAt(0)
+            || this.value === '/'.charCodeAt(0)
+    }
+
+    /**
      * Verify that two cells have the same attributes values (true) or not
      * (false).
      * @param {CharCell} cell

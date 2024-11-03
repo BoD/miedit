@@ -126,7 +126,7 @@ Minitel.VRAM = class {
         while(   first >= 0
               && this.memory[row][first] instanceof Minitel.CharCell
               && this.memory[row][first].hasSameAttributes(origin)
-              && this.memory[row][first].isAlphanumerical()
+            && this.memory[row][first].isUrlCharacter()
         ) first--
 
         // Find the last readable character on the right
@@ -134,7 +134,7 @@ Minitel.VRAM = class {
         while(   last < this.grid.cols
             && this.memory[row][last] instanceof Minitel.CharCell
             && this.memory[row][last].hasSameAttributes(origin)
-            && this.memory[row][last].isAlphanumerical()
+            && this.memory[row][last].isUrlCharacter()
         ) last++
 
         // Concat each character from first to last
