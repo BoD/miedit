@@ -132,7 +132,9 @@ Minitel.VDU = class {
             () => {
                 this.render()
                 const cell = this.vram.get(this.cursor.x, this.cursor.y)
-                this.cursor.setColor(this.colors[cell.fgColor])
+                const invert = (cell instanceof Minitel.DelimiterCell && cell.invert) || (cell instanceof Minitel.CharCell && cell.invert)
+                const color = invert ? (cell.fgColor <= 3 ? 7 : 0 ) : cell.fgColor
+                this.cursor.setColor(this.colors[color])
             },
             1000 / frameRate
         )
